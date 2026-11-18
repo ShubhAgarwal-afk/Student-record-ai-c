@@ -11,6 +11,7 @@ char Email_Id[45];
 int Year;
 int Semester[8];
 float SGPA[8];
+float CGPA[8]
 }
 
 
@@ -43,12 +44,11 @@ printf("Email Id:");
 fgets(s[count].Email_Id,sizeof(s[count].Email_Id),stdin);
 printf("Year:");
 scanf("%d\n",&s[count].Year);
-
-
-for(int i=1;i<Semester;i--)
-{printf("Semester:");
+printf("current Semester:");
 scanf("%d\n",&s[count].Semester);
-printf("SGPA of Semester %d:",i);
+
+for(int i=1;i<s[count].Semester;i++)
+{printf("SGPA of Semester %d:",i);
 scanf("%d",&s[count].SGPA[i-1]);}
 
 count++;
@@ -76,10 +76,10 @@ printf("\n-------Student Found with SAP ID %d-------\n",r);
 printf("Name:%s\n",s[i].name);
 printf("Roll no.:%lld\n",s[i].Roll_no);
 printf("Year:%d\n",s[i].Year);
-printf("Semester:%d\n",s[i].Semester);
+printf("current Semester:%d\n",s[i].Semester);
 printf("Phone no.:%lld\n",s[i].Phone_No);
 printf("Email Id:%s\n",s[i].Email_Id);
-printf("SGPA:%d\n",s[i].SGPA);
+for(int i=1;i<s[count].Semester;i++){printf("SGPA of semester %d:%d\n",i,s[i].SGPA[i-1]);}
 found=1;
 break;
 }
@@ -92,3 +92,16 @@ if(found==0)
    } while(again =='y');
   
   }
+  
+void CGPA() {
+	for(int i=1;i<count;i++) {
+		    for(j=1;j<s[count].Semester;j++) {
+				int total =0 
+				total+=s[i].SGPA[i-1];
+			}
+			printf("CGPA till Semester %d of Student with SAP ID %d is:%f\n",s[count].Semester,s[count].SAP_ID,s[count].CGPA);
+	}
+}
+	
+  
+
