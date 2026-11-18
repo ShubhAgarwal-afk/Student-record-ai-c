@@ -119,6 +119,23 @@ for(int i=1;i<s[count_].Semester;i++)
 
 }
 }
-	
-  
+
+void deleteStudent(){
+	int r;
+	printf("Enter the SAP ID:");
+	scanf("%d",&r);
+	int k=0
+	for(int i=0;i<count;i++){
+		if(s[i].SAP_ID ==r){
+			k=i;
+		break;}
+	}
+	if(k==0) printf("Student not found.\n");
+	else{
+		for(int j=i;j<count -1;j++)
+		{s[j]=s[j+1];}
+		count--;
+  printf("Record deleted.\n");
+	}
+}
 
