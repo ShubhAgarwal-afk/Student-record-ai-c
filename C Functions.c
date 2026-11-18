@@ -61,3 +61,34 @@ scanf("%c",&choice);
 return 0;
 }
 
+void SearchAndDisplay()
+{ int r ,found;
+char again;
+
+do {
+found =0;
+printf("\nEnter the SAP ID to search:");
+scanf("%d\n",&r);
+
+for(int i=0;i<count;i++) {
+if(s[i].SAP_ID ==r) {
+printf("\n-------Student Found with SAP ID %d-------\n",r);
+printf("Name:%s\n",s[i].name);
+printf("Roll no.:%lld\n",s[i].Roll_no);
+printf("Year:%d\n",s[i].Year);
+printf("Semester:%d\n",s[i].Semester);
+printf("Phone no.:%lld\n",s[i].Phone_No);
+printf("Email Id:%s\n",s[i].Email_Id);
+printf("SGPA:%d\n",s[i].SGPA);
+found=1;
+break;
+}
+}
+if(found==0)
+   printf("Student with The given SAP Id not found.\n");
+   
+   printf("\nDo You Want to search Another Student?(y/n):");
+   scanf("%c",&again);
+   } while(again =='y');
+  
+  }
