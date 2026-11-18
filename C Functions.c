@@ -102,6 +102,23 @@ void CGPA() {
 			printf("CGPA till Semester %d of Student with SAP ID %d is:%f\n",s[count].Semester,s[count].SAP_ID,s[count].CGPA);
 	}
 }
+void DisplayAllRecords() {
+	int count_ =0;
+	for(int i=0;count_<count;count_++) {
+printf("\nStudent %d\n",count_+1);
+printf("SAP ID:%d\n",s[count_].SAP_ID);
+printf("Roll no.:%lld\n",s[count_].Roll_No);
+printf("Name:%s\n",s[count_].name);  
+printf("Phone no.:%lld\n",s[count_].Phone_No);
+printf("Email Id:%s\n",s[count_].Email_Id);
+printf("Year:%d\n",s[count_].Year);
+printf("current Semester:%d\n",s[count_].Semester);
+for(int i=1;i<s[count_].Semester;i++)
+{printf("SGPA of Semester %d:%d",i,s[count_].SGPA[i-1]);
+}
+
+}
+}
 	
   
 
