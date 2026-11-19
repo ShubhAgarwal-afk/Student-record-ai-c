@@ -11,7 +11,7 @@ char Email_Id[45];
 int Year;
 int Semester[8];
 float SGPA[8];
-float CGPA[8]
+float CGPA;
 }
 struct Student *s=NULL;
 int count =0 ,capacity =0;
@@ -190,7 +190,20 @@ for(int i=0;i<count-1;i++)
 		}
 		free(t);
  }
-void CGPAavg() {}
+void CGPAavg() {
+	
+for(int i=1;i<=4;i++)
+     { float total =0;
+          for(int j=0;j<count;j++)
+		      {	if(s[j].Year==i)
+                  {    total+=CGPA;
+			             q++;
+                  }					  
+}
+printf("The Average CGPA of %d Year Students:%f",total/q);
+
+}
+}
 
 int main() {
 	int choice;
@@ -205,8 +218,8 @@ int main() {
 		printf("6.Delete a student Record\n");
 		printf("7.Calculation of CGPA of student till his current Semester\n");
 		printf("8.Calculation of Average CGPA of all year student\n");
-		
 		printf("9.Exit\n");
+		
 		printf("Enter your choice:");
 		
 		if(scanf("%d",&choice) != 1) {
