@@ -13,11 +13,11 @@ int Semester[8];
 float SGPA[8];
 float CGPA[8]
 }
-
-
-int addStudent(){
 struct Student *s=NULL;
 int count =0 ,capacity =0;
+
+int addStudent(){
+
 char choice;
   do{
   if(count==capacity) {
@@ -190,7 +190,46 @@ for(int i=0;i<count-1;i++)
 		}
 		free(t);
  }
-void CGPAavg() [ 
+void CGPAavg() {}
+
+int main() {
+	int choice;
+	
+	do{
+		printf("\n========STUDENT RECORD & MANAGEMENT SYSTEM========\n");
+		printf("1. Add Student\n");
+		printf("2. display all Student\n");
+		printf("3. Display in Increasing order of SAP Id\n");
+		printf("4.Display in Increasing order of Name\n");
+		printf("5. Search and Display record of Student\n");
+		printf("6.Delete a student Record\n");
+		printf("7.Calculation of CGPA of student till his current Semester\n");
+		printf("8.Calculation of Average CGPA of all year student\n");
+		
+		printf("9.Exit\n");
+		printf("Enter your choice:");
+		
+		if(scanf("%d",&choice) != 1) {
+			while(getchar() != '\n'){
+			choice =0;}
+		}
+		switch(choice) {
+		    case 1: addStudent();break;
+			case 2:DisplayAllRecords();break;
+			case 3:DisplayAscendingNumber();break;
+			case 4:DisplayAscendingName();break;
+            case 5: SearchAndDisplay();	break;
+            case 6:deleteStudent(); break;
+	        case 7: CGPA()	;   break;
+		    case 8:CGPAavg();  break;
+			case 9:printf("Exiting.....\nHave Wonderful day ahead"); break;
+			default:printf("Invalid Choice! Try again.\n");
+		}
+	}while(choice != 12);
+	
+	free(st);
+	return 0;
+}
 			
 			
 	
