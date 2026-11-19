@@ -1,5 +1,5 @@
 #include<stdio.h>
-#include<strings.h>
+#include<string.h>
 #include<stdlib.h>
 
 struct student {
@@ -9,11 +9,11 @@ char name[60];
 long long int Phone_No;
 char Email_Id[45];
 int Year;
-int Semester[8];
+int Semester;
 float SGPA[8];
 float CGPA;
 }
-struct Student *s=NULL;
+struct student *s=NULL;
 int count =0 ,capacity =0;
 
 int addStudent(){
@@ -33,23 +33,23 @@ char choice;
   
 printf("\nStudent %d\n",count+1);
 printf("SAP ID:");
-scanf("%d\n",&s[count].SAP_ID);
+scanf("%d",&s[count].SAP_ID);
 printf("Roll no.:");
-scanf("%lld\n",&s[count].Roll_No);
+scanf("%lld",&s[count].Roll_No);
 printf("Name:");
-scanf("%s\n",&s[count].name);  
+scanf("%s",&s[count].name);  
 printf("Phone no.:");
-scanf("%lld\n",&s[count].Phone_No);
+scanf("%lld",&s[count].Phone_No);
 printf("Email Id:");
 fgets(s[count].Email_Id,sizeof(s[count].Email_Id),stdin);
 printf("Year:");
-scanf("%d\n",&s[count].Year);
+scanf("%d",&s[count].Year);
 printf("current Semester:");
-scanf("%d\n",&s[count].Semester);
+scanf("%d",&s[count].Semester);
 
-for(int i=1;i<s[count].Semester;i++)
+for(int i=1;i<=s[count].Semester;i++)
 {printf("SGPA of Semester %d:",i);
-scanf("%d",&s[count].SGPA[i-1]);}
+scanf("%f",&s[count].SGPA[i-1]);}
 
 count++;
 
@@ -68,18 +68,18 @@ char again;
 do {
 found =0;
 printf("\nEnter the SAP ID to search:");
-scanf("%d\n",&r);
+scanf("%d",&r);
 
 for(int i=0;i<count;i++) {
 if(s[i].SAP_ID ==r) {
 printf("\n-------Student Found with SAP ID %d-------\n",r);
 printf("Name:%s\n",s[i].name);
-printf("Roll no.:%lld\n",s[i].Roll_no);
+printf("Roll no.:%lld\n",s[i].Roll_No);
 printf("Year:%d\n",s[i].Year);
 printf("current Semester:%d\n",s[i].Semester);
 printf("Phone no.:%lld\n",s[i].Phone_No);
 printf("Email Id:%s\n",s[i].Email_Id);
-for(int i=1;i<s[count].Semester;i++){printf("SGPA of semester %d:%d\n",i,s[i].SGPA[i-1]);}
+for(int i=1;i<=s[i].Semester;i++){printf("SGPA of semester %f:%d\n",i,s[i].SGPA[i-1]);}
 found=1;
 break;
 }
@@ -95,8 +95,8 @@ if(found==0)
   
 void CGPA() {
 	for(int i=1;i<count;i++) {
-		    for(j=1;j<s[count].Semester;j++) {
-				int total =0 
+		    for(int j=1;j<=s[count].Semester;j++) {
+				int total =0; 
 				total+=s[i].SGPA[i-1];
 			}
 			printf("CGPA till Semester %d of Student with SAP ID %d is:%f\n",s[count].Semester,s[count].SAP_ID,s[count].CGPA);
@@ -113,8 +113,8 @@ printf("Phone no.:%lld\n",s[count_].Phone_No);
 printf("Email Id:%s\n",s[count_].Email_Id);
 printf("Year:%d\n",s[count_].Year);
 printf("current Semester:%d\n",s[count_].Semester);
-for(int i=1;i<s[count_].Semester;i++)
-{printf("SGPA of Semester %d:%d",i,s[count_].SGPA[i-1]);
+for(int i=1;i<=s[count_].Semester;i++)
+{printf("SGPA of Semester %d:%f",i,s[count_].SGPA[i-1]);
 }
 
 }
@@ -124,7 +124,7 @@ void deleteStudent(){
 	int r;
 	printf("Enter the SAP ID:");
 	scanf("%d",&r);
-	int k=0
+	int k=0;
 	for(int i=0;i<count;i++){
 		if(s[i].SAP_ID ==r){
 			k=i;
@@ -144,7 +144,7 @@ void DisplayAscendingNumber() {
 	
 	if(count==0) {
 		printf("No record found.\n");
-		return 0;
+		return;
 	}
 	
 	struct Student *t = malloc(count * sizeof(struct Student));
@@ -173,7 +173,7 @@ if(count==0) {
 printf("No records found.\n");
 return;
 }
-struct Student *t = malloc(count * sizeof(struct Student);
+struct Student *t = malloc(count * sizeof(struct Student));
 if(t == NULL) {
 printf("Memory allocation failed!\n");
 return ;
@@ -182,10 +182,10 @@ for(int i=0;i<count;i++)
 t[i]=s[i];
 
 for(int i=0;i<count-1;i++)
-    for(j=0;j<count-i-1;j++)
+    for(int j=0;j<count-i-1;j++)
         if(strcmp(t[j].name,t[j+1].name)>0) {
                temp=t[j];
-		       t[j]=t[j+1]
+		       t[j]=t[j+1];
          	   t[j+1]=temp;
 		}
 		free(t);
@@ -196,7 +196,7 @@ for(int i=1;i<=4;i++)
      { float total =0;
           for(int j=0;j<count;j++)
 		      {	if(s[j].Year==i)
-                  {    total+=CGPA;
+                  {    total+=s[j].CGPA;
 			             q++;
                   }					  
 }
@@ -233,14 +233,14 @@ int main() {
 			case 4:DisplayAscendingName();break;
             case 5: SearchAndDisplay();	break;
             case 6:deleteStudent(); break;
-	        case 7: CGPA()	;   break;
+	        case 7:CGPA()	;   break;
 		    case 8:CGPAavg();  break;
 			case 9:printf("Exiting.....\nHave Wonderful day ahead"); break;
 			default:printf("Invalid Choice! Try again.\n");
 		}
-	}while(choice != 12);
+	}while(choice !=9);
 	
-	free(st);
+	free(s);
 	return 0;
 }
 			
