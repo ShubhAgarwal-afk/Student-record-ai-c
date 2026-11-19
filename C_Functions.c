@@ -14,6 +14,53 @@ struct Student {
     float CGPA;
 };
 
+void AcademicAdvisor(struct Student *p)
+{
+    printf("\n========== AI-ASSISTED ACADEMIC ADVISOR ==========\n");
+    printf("Student: %s\n", p->name);
+    printf("CGPA: %.2f\n", p->CGPA);
+
+    if (p->CGPA >= 8.5)
+    {
+        printf("Category: Excellent Performance\n");
+        printf("Advice: Maintain your current study pattern and explore advanced learning opportunities.\n");
+    }
+    else if (p->CGPA >= 7.0)
+    {
+        printf("Category: Good Performance\n");
+        printf("Advice: Keep up the good work and focus on improving weaker subjects.\n");
+    }
+    else if (p->CGPA >= 5.0)
+    {
+        printf("Category: Needs Improvement\n");
+        printf("Advice: Focus more on subjects with lower SGPA and follow a regular study schedule.\n");
+    }
+    else
+    {
+        printf("Category: Requires Immediate Attention\n");
+        printf("Advice: Give immediate attention to weak subjects and seek guidance from faculty.\n");
+    }
+}
+
+void AcademicAdvisorBySAP()
+{
+    int sap;
+
+    printf("\nEnter SAP ID for Academic Advice: ");
+    scanf("%d", &sap);
+
+    int index = findIndex(sap);
+
+    if (index == -1)
+    {
+        printf("Student not found.\n");
+        return;
+    }
+
+    s[index].CGPA = calcCGPA(index);
+    AcademicAdvisor(&s[index]);
+}
+
 struct Student *s = NULL;
 int count = 0, capacity = 0;
 
