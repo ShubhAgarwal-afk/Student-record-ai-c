@@ -139,3 +139,59 @@ void deleteStudent(){
 	}
 }
 
+void DisplayAscendingNumber() {
+	struct student temp;
+	
+	if(count==0) {
+		printf("No record found.\n");
+		return 0;
+	}
+	
+	struct Student *t = malloc(count * sizeof(struct Student));
+	if(t==NULL) {
+		printf("Memory allocation failed!\n");
+		return;
+	}
+	for(int i=0;i<count;i++) 
+		t[i]=s[i];
+	
+	for(int i=0;i<count-1;i++)
+		for(int j=0;j<count -1-i;j++)
+			if(t[j].SAP_ID >t[j+1].SAP_ID) {
+				temp = t[j]; 
+				t[j]=t[j+1];
+				t[j+1] =temp;
+			}
+			printf(" ");
+			
+			free(t);
+}
+ void DisplayAscendingName() {
+struct Student temp;
+
+if(count==0) {
+printf("No records found.\n");
+return;
+}
+struct Student *t = malloc(count * sizeof(struct Student);
+if(t == NULL) {
+printf("Memory allocation failed!\n");
+return ;
+}
+for(int i=0;i<count;i++)
+t[i]=s[i];
+
+for(int i=0;i<count-1;i++)
+    for(j=0;j<count-i-1;j++)
+        if(strcmp(t[j].name,t[j+1].name)>0) {
+               temp=t[j];
+		       t[j]=t[j+1]
+         	   t[j+1]=temp;
+		}
+		free(t);
+ }
+void CGPAavg() [ 
+			
+			
+	
+	
