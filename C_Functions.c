@@ -344,10 +344,12 @@ int main() {
             case 6: deleteStudent(); break;
             case 7: CGPA(); break;
             case 8: CGPAavg(); break;
-            case 9: printf("Exiting.....\nHave Wonderful day ahead"); break;
+			case 9: AcademicAdvisorBySAP();break;
+            case 10: printf("Exiting.....\nHave Wonderful day ahead"); break;
+			
             default: printf("Invalid Choice! Try again.\n");
         }
-    } while (choice != 9);
+    } while (choice != 10);
 
     free(s);
     return 0;
