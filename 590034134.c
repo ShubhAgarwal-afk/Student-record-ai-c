@@ -1,3 +1,9 @@
+/*
+Name Shubh Agarwal
+Batch 19
+SAP_ID 590034134
+
+*/
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
