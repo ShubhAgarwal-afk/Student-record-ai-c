@@ -13,6 +13,53 @@ struct Student {
     float SGPA[8];         // SGPA of semester 1..8
     float CGPA;
 };
+/* Global dynamic array and helper prototypes */
+struct Student *s = NULL;
+int count = 0, capacity = 0;
+
+int findIndex(int sap);
+float calcCGPA(int i);
+
+#define FILE_NAME "Students.dat"
+void saveToFile() {
+	FILE *fp = fopen(FILE_NAME,"wb");
+	if(fp == NULL) {
+		printf("Warning:could not save to file.\n");
+		return;
+	}
+	int recSize = (int) sizeof(struct Student);
+	fwrite(&recSize, sizeof(int), 1, fp);
+	fwrite(&count,sizeof(int),1,fp);
+	if(count>0)
+		fwrite(s,sizeof(struct Student),count,fp);
+	fclose(fp);
+}
+void loadFromFile() {
+	FILE *fp =fopen(FILE_NAME,"rb");
+	if(fp==NULL)
+		return;
+	
+	int recSize =0,n=0;
+	if(fread(&recSize,sizeof(int),1,fp) !=1 || recSize != (int)sizeof(struct Student)) {
+		printf("Saved file has a different format,so it was ignored.\n");
+		fclose(fp);
+		return;
+	}
+	if (fread(&n, sizeof(int), 1, fp) != 1 || n <= 0) {
+		fclose(fp);
+		return;
+	}
+	s =malloc(n* sizeof(struct Student));
+	if(s==NULL) {
+		printf("Memory Aloocation Failed!\n");
+		fclose(fp);
+		return;
+	}
+	capacity =n;
+	count = (int)fread(s,sizeof(struct Student),n,fp);
+	fclose(fp);
+	printf("Loaded %d record(s) from %s.\n",count,FILE_NAME);
+}
 
 void AcademicAdvisor(struct Student *p)
 {
@@ -60,9 +107,6 @@ void AcademicAdvisorBySAP()
     s[index].CGPA = calcCGPA(index);
     AcademicAdvisor(&s[index]);
 }
-
-struct Student *s = NULL;
-int count = 0, capacity = 0;
 
 /* ---------- helpers ---------- */
 
@@ -143,7 +187,8 @@ void addStudent() {
 
             s[count].CGPA = calcCGPA(count);
             count++;
-        }
+            saveToFile();
+	  }
 
         printf("Add another student?(Y/N):");
         scanf(" %c", &choice);
@@ -219,6 +264,7 @@ void deleteStudent() {
         for (int j = k; j < count - 1; j++)
             s[j] = s[j + 1];
         count--;
+		saveToFile();
         printf("Record deleted.\n");
     }
 }
@@ -316,7 +362,7 @@ void CGPAavg() {
 
 int main() {
     int choice;
-
+loadFromFile();
     do {
         printf("\n========STUDENT RECORD & MANAGEMENT SYSTEM========\n");
         printf("1. Add Student\n");
@@ -327,7 +373,8 @@ int main() {
         printf("6.Delete a student Record\n");
         printf("7.Calculation of CGPA of student till his current Semester\n");
         printf("8.Calculation of Average CGPA of all year student\n");
-        printf("9.Exit\n");
+        printf("9. AI-Assisted Academic Advisor\n");
+        printf("10. Exit\n");
 
         printf("Enter your choice:");
 
@@ -354,4 +401,6 @@ int main() {
     free(s);
     return 0;
 }
+	
+
 	
