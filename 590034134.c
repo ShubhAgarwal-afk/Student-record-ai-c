@@ -7,7 +7,7 @@ SAP_ID 590034134
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
-
+#define FILE_NAME "Students.dat"
 struct Student {
     int SAP_ID;
     long long int Roll_No;
@@ -19,14 +19,14 @@ struct Student {
     float SGPA[8];         // SGPA of semester 1..8
     float CGPA;
 };
-/* Global dynamic array and helper prototypes */
+
 struct Student *s = NULL;
 int count = 0, capacity = 0;
 
 int findIndex(int sap);
 float calcCGPA(int i);
 
-#define FILE_NAME "Students.dat"
+
 void saveToFile() {
 	FILE *fp = fopen(FILE_NAME,"wb");
 	if(fp == NULL) {
@@ -114,7 +114,7 @@ void AcademicAdvisorBySAP()
     AcademicAdvisor(&s[index]);
 }
 
-/* ---------- helpers ---------- */
+
 
 int findIndex(int sap) {
     for (int i = 0; i < count; i++)
@@ -122,7 +122,7 @@ int findIndex(int sap) {
     return -1;
 }
 
-/* CGPA = average of the available SGPAs (semesters 1 .. current) */
+
 float calcCGPA(int i) {
     float total = 0;
     for (int j = 0; j < s[i].Semester; j++)
@@ -143,7 +143,7 @@ void printStudent(struct Student *p) {
     printf("CGPA: %.2f\n", p->CGPA);
 }
 
-/* ---------- 1. add ---------- */
+
 
 void addStudent() {
     char choice;
@@ -202,7 +202,7 @@ void addStudent() {
     } while (choice == 'Y' || choice == 'y');
 }
 
-/* ---------- 2. search and display ---------- */
+
 
 void SearchAndDisplay() {
     int r, found;
@@ -229,7 +229,7 @@ void SearchAndDisplay() {
     } while (again == 'y' || again == 'Y');
 }
 
-/* ---------- 3. CGPA of each student ---------- */
+
 
 void CGPA() {
     if (count == 0) {
@@ -243,7 +243,7 @@ void CGPA() {
     }
 }
 
-/* ---------- 4. display all ---------- */
+
 
 void DisplayAllRecords() {
     if (count == 0) {
@@ -256,7 +256,7 @@ void DisplayAllRecords() {
     }
 }
 
-/* ---------- 5. delete ---------- */
+
 
 void deleteStudent() {
     int r;
@@ -275,7 +275,7 @@ void deleteStudent() {
     }
 }
 
-/* ---------- 6. ascending order of SAP ID ---------- */
+
 
 void DisplayAscendingNumber() {
     struct Student temp;
@@ -309,7 +309,7 @@ void DisplayAscendingNumber() {
     free(t);
 }
 
-/* ---------- 7. ascending order of Name ---------- */
+
 
 void DisplayAscendingName() {
     struct Student temp;
@@ -343,7 +343,7 @@ void DisplayAscendingName() {
     free(t);
 }
 
-/* ---------- 8. average CGPA of each year ---------- */
+
 
 void CGPAavg() {
     if (count == 0) {
